@@ -17,7 +17,7 @@ jobs:
       packages: write
 
     steps:
-    - users: actions/checkout@v3
+    - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -38,7 +38,7 @@ jobs:
         
     
     - name: Upload artifact for Docker job 
-      users: actions/upload-artifact@v3 
+      uses: actions/upload-artifact@v3 
       with:
         name: java-app
         path: '${{ github.workspace }}/target/*.jar'
@@ -52,7 +52,7 @@ jobs:
       packages: write
     
     steps:
-    - users: actions/checkout@v3 
+    - uses: actions/checkout@v3 
     - name: Download artifact for Maven job
       users: actions/download-artifact@v3
       with:
