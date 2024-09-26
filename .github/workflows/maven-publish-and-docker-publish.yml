@@ -26,6 +26,20 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
         cache: 'maven'
+
+    - name: Set up Maven settings
+      run: |
+        mkdir -p ~/.m2
+        echo "<settings>
+                <servers>
+                  <server>
+                    <id>your-repo-id</id>
+                    <username>${{ secrets.MAVEN_USERNAME }}</username>
+                    <password>${{ secrets.MAVEN_PASSWORD }}</password>
+                  </server>
+                </servers>
+               </settings>" > ~/.m2/settings.xml
+
         
     - name: Check Java version
       run: java -version
